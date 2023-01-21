@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+//A IDEIA DO PROJETO E CRIAR UMA LISTA DE ATIVIDADES A SEREM CUMPRIDAS DIARIAMENTE.
+//A MEDIDA QUE FORMOS EXECUTANDO AS TAREFAS, MARCAMOS COMO CONCLUIDA E PASSAMOS PARA 
+//DIA SEGUINTE. A LISTA DE COISAS A SEREM FEITAS JA ESTARA DEFINIDA NO INICIO 
+//DO PROGRAMA. NAO SERA FEITA UMA NOVA LISTA DE ATIVIDADES A CADA DIA.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Habit {
+  id         String          @id @default(uuid())
+  title      String
+  created_at DateTime
+  dayHabit   DayHabit[]
+  weekDays   HabitWeekDays[]
+
+  @@map("habits")
+}
+
+model HabitWeekDays {
+  id       String @id @default(uuid())
+  habit_id String
+  week_day Int
+
+  habit Habit @relation(fields: [habit_id], references: [id])
+
+  @@unique([habit_id, week_day])
+  @@map("habit_week_days")
+}
+
+model Day {
+  id        String     @id @default(uuid())
+  date      DateTime
+  dayHabits DayHabit[]
+
+  @@unique([date]) //para ter registros unicos de data
+  //obs.poderao haver dias que nao tenham registros.
+  @@map("days")
+}
+
+model DayHabit {
+  id       String @id @default(uuid())
+  day_id   String
+  habit_id String
+
+  day   Day   @relation(fields: [day_id], references: [id])
+  habit Habit @relation(fields: [habit_id], references: [id])
+
+  @@unique([day_id, habit_id])
+  @@map("days_habits")
+}
