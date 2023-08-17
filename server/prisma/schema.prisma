@@ -41,7 +41,7 @@ model HabitWeekDays {
   @@map("habit_week_days")
 }
 
-//lista dos habito que estarao contidos naquele dia
+//lista dos habitos que estarao contidos naquele dia
 model Day {
   id        String     @id @default(uuid())
   date      DateTime
