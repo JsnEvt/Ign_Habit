@@ -23,8 +23,8 @@ model Habit {
   id         String          @id @default(uuid())
   title      String
   created_at DateTime
-  dayHabit   DayHabit[]
-  weekDays   HabitWeekDays[]
+  dayHabit   DayHabit[] //lista dos habitos diarios
+  weekDays   HabitWeekDays[] //lista dos dias da semana que contem algum habito especifico
 
   @@map("habits")
 }
@@ -32,7 +32,7 @@ model Habit {
 model HabitWeekDays {
   id       String @id @default(uuid())
   habit_id String
-  week_day Int
+  week_day Int //lista dos dias da semana
 
   habit Habit @relation(fields: [habit_id], references: [id])
 

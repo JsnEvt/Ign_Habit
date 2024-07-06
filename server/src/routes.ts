@@ -54,6 +54,8 @@ export async function appRoutes(app: FastifyInstance) {
         }
       }
     })
+    //obtem o conjunto de habitos criados ate aquela data e cujo dia da semana corresponda ao
+    //dia armazenado em weekDay.
 
     const day = await prisma.day.findUnique({
       where: {
@@ -63,6 +65,7 @@ export async function appRoutes(app: FastifyInstance) {
         dayHabits: true,
       }
     })
+    //obtem o dia que contem todos os habitos do dia passado.
 
     const completedHabits = day?.dayHabits.map(dayHabit => {
       return dayHabit.habit_id
