@@ -1,4 +1,3 @@
-<h1 align="center"> Habits </h1>
 <p align="center">
   <img src="https://github.com/JsnEvt/Ign_Habit/blob/main/img/nlw_ignite.png"alt="Logo do Projeto"/>
 </p>
