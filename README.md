@@ -35,8 +35,3 @@ A rotina é criada e os dias que deverão ser cumpridos, são definidos na ocasi
 A lista de hábitos é cumulativa.
 Caso o usuário insira um novo hábito em um dia qualquer, à partir daquele dia, na lista de hábitos conterá este último hábito cadastrado, além dos hábitos já cadastrados.
 
-
-Uma exposição da versão web do mesmo aplicativo:
-
-![indice](https://github.com/JsnEvt/Ign_Habit/blob/main/img/web_index480x237.jpg)
-![cad](https://github.com/JsnEvt/Ign_Habit/blob/main/img/web_cad_habit480x222.jpg)
